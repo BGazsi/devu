@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div class="modal fade" id="edit-place-modal-<%= place._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Hely szerkesztése</h4>
+            </div>
+            <form action="/admin/edit-place/<%=place._id%>" role="form" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label for="name">Név:</label>
+                            <input class="form-control" type="text" name="name" value="<%= place.name %>"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="description">Leírás:</label>
+                            <textarea class="form-control" name="description"><%= place.description %></textarea>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <label for="picture">Kép:</label>
+                            <input class="form-control" type="text" name="picture" value="<%= place.pictures[0] %>"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="verified">Elfogadott:</label>
+                            <input class="form-control" type="text" name="verified" value="<%= place.verified %>"/>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <label for="long">Long:</label>
+                            <input class="form-control" type="text" name="long" value="<%= place.position.long %>"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lat">Lat:</label>
+                            <input class="form-control" type="text" name="lat" value="<%= place.position.lat %>"/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+                    <input type="submit" class="btn btn-primary" value="Mentés" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

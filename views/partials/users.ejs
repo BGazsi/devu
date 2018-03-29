@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th width="40%">E-mail</th>
+                <th width="20%">Nem</th>
+                <th width="15%">Letiltott</th>
+                <th width="15%">Megerősített</th>
+                <th width="10%" class="text-right">Szerkesztés</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tpl.users.forEach(function(user) { %>
+                <tr>
+                    <td><%= user.email %></td>
+                    <td><%= user.sex %></td>
+                    <td><%= user.disabled %></td>
+                    <td><%= user.verified %></td>
+                    <td class="text-right">
+                        <button type="button" data-toggle="modal" data-target="#edit-modal-<%= user._id %>" data-user-id="<%= user._id %>" class="btn btn-default">
+                            <i class="fa fa-pencil" title="Szerkesztés"></i>
+                        </button>
+                        <button type="button" data-toggle="modal" data-target="#delete-user-modal-<%= user._id %>" data-user-id="<%= user._id %>" class="btn btn-danger">
+                            <i class="fa fa-trash-o" title="Törlés"></i>
+                        </button>
+                    </td>
+                </tr>
+
+            <%- include ./userEditModal.ejs %>
+            <%- include ./userDeleteModal.ejs %>
+            <% }); %>
+        </tbody>
+    </table>
+</div>

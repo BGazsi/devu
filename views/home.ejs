@@ -1,0 +1,36 @@
+<%- include partials/portalHeader.ejs %>
+<%- include partials/menuBar.ejs%>
+<%- include ./partials/upload.ejs%>
+<%- include ./partials/criticalHome.ejs%>
+<div class="container top-offset home">
+	<!-- ha ehhez a divhez hozzá van adva a row class, akkor a szűrés box betört a tételek alá, ezért kivettem -->
+	<div class="col-md-3 right-block">
+		<p><b>Szűrés</b></p>
+		<div class="filter-container">
+			<label for="city">Város</label>
+			<select name="city" class="form-control" id="city">
+				<option>Budapest</option>
+			</select>
+			<label for="tags">Címkék</label>
+			<div class="input-group">
+				<select name="tags" class="form-control" id="tags">
+					<% tpl.tags.forEach(function(tag) { %>
+						<option value="<%= tag._id %>"><%= tag.name %></option>
+					<% }) %>
+				</select>
+				<span class="input-group-btn" data-component="add-to-filter">
+					<button class="btn btn-default" type="button">Hozzáadás</button>
+				</span>
+			</div>
+			<div class="added-tags"></div>
+
+			<button class="btn btn-primary btn-block btn-filter" data-component="filter-button">Szűrés</button>
+		</div>
+		<%- include ./partials/top5.ejs%>
+	</div>
+	<div class="list">
+		<%- include list.ejs %>
+	</div>
+</div>
+
+<%- include partials/portalFooter.ejs %>

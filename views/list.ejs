@@ -1,0 +1,11 @@
+<div class="col-md-9">
+    <div class="row">
+        <!-- vegigmegyunk a helyeken -->
+        <% var i = 0; %>
+        <% tpl.places.forEach(function(place) {
+            if(place.verified) { %>
+                <%- include partials/renderPlaceListItem.ejs %>
+            <% } %>
+        <% }); %>
+    </div>
+</div>

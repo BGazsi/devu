@@ -1,0 +1,36 @@
+<% if(!placeClass) {
+    var placeClass = 'col-md-4';
+} %>
+
+<div itemscope itemtype="http://schema.org/Place" class="<%=tpl.extraPlaceClass ? tpl.extraPlaceClass : 'col-md-4 col-sm-6' %>">
+    <div class="place-container place-favoritable" data-place-id="<%= place._id %>">
+        <div class="image-container">
+            <a href="/place/<%= place._id %>"><img itemprop="image" src="<%= place.pictures[0] ? place.pictures[0] : '' %>" alt="<%= place.name %>" class="img-responsive"></a>
+            <div class="img-gradient">
+                <a href="/place/<%= place._id %>"><h4 itemprop="name"><%= place.name %></h4></a>
+            </div>
+        </div>
+        <div class="ratings-horizontal">
+            <div class="hidden" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                <span itemprop="ratingValue"><%=place.ratings.aggregate.toFixed(1)%></span>
+                <span itemprop="bestRating">5</span>
+                <span itemprop="worstRating">1</span>
+                <div itemprop="reviewCount" class="hidden"> <%=place.ratings.male.count + place.ratings.female.count%> </div>
+            </div>
+            <span class="male">
+                <i class="fa fa-mars" aria-hidden="true"></i>
+                <span><%= (place.ratings.male.avg ? place.ratings.male.avg : 0).toFixed(1) %></span>
+            </span>
+            <span class="female">
+                <i class="fa fa-venus" aria-hidden="true"></i>
+                <span><%= (place.ratings.female.avg ? place.ratings.female.avg : 0).toFixed(1) %></span>
+            </span>
+            <div class="icon-fav" data-component="favorite" <% if(!user){ %>
+                tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-html="true" data-content="A kedvencek funkció csak bejelentkezett felhasználók számára elérhető! <a href='/user/login'>Jelentkezz be</a> vagy <a href='/user/register'>regisztrálj!</a>"
+                <%}%>
+                 data-is-favorite="<%= user ? user.favorites.indexOf(place._id) : '-1' %>">
+                <i class="fa fa-heart" aria-hidden="true" data-component="changeIcon"></i>
+            </div>
+        </div>
+    </div>
+</div>

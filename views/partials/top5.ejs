@@ -1,0 +1,10 @@
+<p><strong>Top 5</strong></p>
+<div class="top-5-container">
+<% tpl.top.forEach(function(place, index) {
+    if(place.verified) {%>
+
+    <%- include ./topPlaceItem.ejs %>
+
+    <% } %>
+<% }); %>
+</div>

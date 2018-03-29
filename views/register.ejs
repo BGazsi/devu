@@ -1,0 +1,49 @@
+<%- include partials/portalHeader.ejs %>
+<%- include partials/criticalLogin.ejs %>
+
+<div id="fb-root"></div>
+<div id="status"></div>
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+
+<div class="row">
+    <div class="container top-offset-3">
+        <div class="logo-center">
+            <img src="/public/images/devu-logo.png" height="20">
+        </div>
+        <div class="box-container">
+            <a href="/auth/facebook" value="Submit" class="btn btn-info btn-block">
+                <i class="fa fa-facebook"></i>
+                Belépés Facebook-kal
+            </a>
+            <p>vagy</p>
+            <form action="/user/register" method="post">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Jelszó">
+                <input type="password" name="passwordAgain" class="form-control" id="password-again" placeholder="Jelszó újra">
+                <div  class="btn-group gender-select">
+                    <span>Nemed:</span>
+                    <span class="radio">
+                        <input type="radio" name="gender" value="male" id="radio-male">
+                        <label for="radio-male">Férfi</label>
+                    </span>
+                    <span class="radio">
+                        <input type="radio" name="gender" value="female" id="radio-female">
+                        <label for="radio-female">Nő</label>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+                <button type="submit" value="Submit" class="btn btn-primary btn-block">Regisztráció</button>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center not-member">
+        <span>Már regisztráltál? <a href="/user/login">Lép be itt!</a></span>
+        <div class="no-registration">
+            <div>Nem szeretsz regisztrálni?</div>
+            <div><a href="/home">Próbáld ki regisztráció nélkül!</a></div>
+            <div><a href="/landing">Miről maradok le?</a></div>
+        </div>
+    </div>
+</div>
+
+<%- include partials/portalFooter.ejs %>

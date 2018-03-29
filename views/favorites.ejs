@@ -1,0 +1,23 @@
+<%- include partials/portalHeader.ejs %>
+<%- include partials/menuBar.ejs%>
+<%- include ./partials/upload.ejs%>
+
+<div class="container container--small top-offset">
+
+    <% tpl.favorites.forEach(function(place, index) { %>
+        <%- index % 4 === 0 ? '<div class="row">' : '' %>
+        <%- include ./partials/renderPlaceListItem.ejs %>
+
+        <!-- harom helyenkent lezarjuk a sort -->
+        <%- index % 4 === 3 ? '</div>' : '' %>
+
+        <!-- utolso index mentese a cikluson kivulre -->
+        <% lastIndex = index; %>
+    <% }); %>
+
+    <!-- ha nem harommal oszthato szamu hely van, akkor az utolso sort meg le kell zarnunk -->
+    <%- locals.lastIndex % 4 !== 3 ? '</div>' : '' %>
+
+</div>
+
+<%- include partials/portalFooter.ejs %>

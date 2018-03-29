@@ -1,0 +1,525 @@
+body {
+  font: 14px Helvetica, Arial, sans-serif;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.info-fixed-top {
+  position: fixed;
+  top: 40px;
+  width: 100%;
+  z-index: 100;
+}
+
+.info-bar {
+  p, button {
+    display: inline-block;
+  }
+  p {
+    font-weight: 700;
+    padding-right: 10px;
+  }
+  text-align: center;
+  padding: 10px;
+}
+
+.top-offset {
+  margin-top: 140px;
+  &.home {
+    margin-bottom: 150px;
+  }
+  @media(min-width: 991px) {
+    &.devu-container {
+      margin-bottom: 150px;
+    }
+  }
+  @media(max-width: 991px) {
+    &.col-md-3 {
+      margin-top: 10px;
+      margin-bottom: 150px;
+    }
+  }
+}
+
+.top-offset-2 {
+  margin-top: 100px;
+}
+
+.top-offset-3 {
+  margin-top: 50px;
+}
+
+.no-horizontal-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.place-container,
+.box-container,
+.filter-container,
+.top-5-container,
+.devu-container {
+  height: auto;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: white;
+  border: 1px solid #e1e1e1;
+  webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 5px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15),0 1px 5px rgba(0,0,0,0.075);
+}
+
+.upload-container.filter-container {
+  margin-bottom: 150px;
+}
+
+.place-container:not(.devu-container) {
+  height: 180px;
+}
+
+.box-container {
+  p {
+    padding: 10px 0 5px 0;
+    text-align: center;
+  }
+  & .gender-select {
+    & .radio {
+      float: left;
+      margin-top: 0;
+      margin-left: 10px;
+    }
+    span {
+      float: left;
+    }
+  }
+
+  & button {
+    position: relative;
+  }
+  & .fa-facebook {
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    font-size: 22px;
+  }
+  width: 250px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.filter-container {
+  & .btn-group {
+    margin-bottom: 5px;
+  }
+  & .btn-filter {
+    margin-top: 5px;
+  }
+}
+
+.image-container {
+  h4 {
+    color: white;
+    position: absolute;
+    left: 14px;
+    bottom: 0;
+  }
+  .img-gradient {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+  }
+  position: relative;
+  height: 136px;
+  border: 1px solid #e1e1e1;
+}
+
+.form-control,
+.input-group {
+  margin-bottom: 10px;
+}
+/* ===========================================================================
+   CUSTOM CHECKBOX AND RADIO BUTTON
+   =========================================================================== */
+input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+input[type=radio] {
+  position: absolute;
+  opacity: 0;
+}
+
+input[type=checkbox] + label {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  margin: 0;
+  margin-left: 20px;
+}
+
+input[type=radio] + label {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  margin: 0;
+  margin-left: 20px;
+}
+
+input[type=checkbox] + label:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #CCC;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+}
+
+input[type=radio]:not(.item) + label:after {
+  display: block;
+  content: " ";
+  position: absolute;
+  border: 1px solid #CCC;
+  height: 14px;
+  width: 14px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+}
+
+input[type="radio"] + label:before {
+  display: none;
+  content: " ";
+  position: absolute;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  top: 3px;
+  left: 3px;
+}
+
+input[type=checkbox]:checked + label:before {
+  content: '';
+  position: absolute;
+  background-color: #ff0055;
+  border: none;
+  height: 8px;
+  width: 8px;
+  top: 3px;
+  left: 3px;
+}
+
+input[type=radio]:checked + label:not(.rating-radio-label):before {
+  display:block;
+  background-color: #ff0055;
+}
+
+
+.ratings-horizontal {
+  & .male > span, .female > span {
+    font-weight: 700;
+  }
+  & .female {
+    margin-left: 10px;
+  }
+  & .icon-fav {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    &:focus {
+      outline: none;
+    }
+    + .popover .popover-content {
+      width: 175px;
+    }
+  }
+  line-height: 32px;
+  position: relative;
+}
+
+.fa-heart {
+  color: #ff0055;
+}
+
+.ratings-vertical {
+  & .male, .female {
+    margin-left: 10px;
+  }
+  & .male > span, .female > span {
+    font-weight: 700;
+  }
+  & .female > span {
+    padding-left: 2px;
+  }
+  float: left;
+}
+
+.container {
+  &.not-member {
+    margin-top: 20px;
+  }
+  & .no-registration {
+    padding-top: 10px;
+    border-top: 1px solid #e1e1e1;
+    width: 250px;
+    margin: 40px auto;
+  }
+  h3 {
+    margin-bottom: 20px;
+  }
+}
+
+.devu-title {
+  span {
+    border-bottom: 3px solid #ff0055;
+    color: #333333;
+    font-weight: 700;
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+  border-bottom: 1px solid #e1e1e1;
+  margin: 10px 0 20px 0;
+}
+
+.top-5-container {
+  .top-place-item {
+    cursor: pointer;
+    .item-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #e1e1e1;
+      float: left;
+      .img-responsive {
+        width: 100%;
+      }
+    }
+    & .item-info {
+      float: left;
+      padding: 5px 0 0 10px;
+      & h4 {
+        margin: 0;
+        font-size: 16px;
+      }
+      & .item-rating {
+        font-size: 13px;
+        color: #ff0055;
+      }
+    }
+    & .icon-fav {
+      float: right;
+      line-height: 40px;
+      padding-right: 5px;
+    }
+    border-bottom: 1px solid #e1e1e1;
+    padding: 8px 0;
+  }
+
+  & .top-place-item:first-of-type {
+    padding-top: 0;
+  }
+
+  & .top-place-item:last-of-type {
+    padding-bottom: 0;
+    border: none;
+  }
+}
+
+.devu-container {
+   .devu-tags {
+     .devu-tag {
+      border-radius: 4px;
+      padding: 4px 8px;
+      border: 1px solid #e1e1e1;
+    }
+    margin-bottom: 20px;
+  }
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  & .map {
+    height: 260px;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+  }
+  & .btn .fa-heart {
+    padding-right: 5px;
+  }
+}
+
+.details-header {
+  & h3 {
+    font-weight: 700;
+  }
+  & .main-img {
+    border: 1px solid #e1e1e1;
+    max-height: 280px;
+
+    img.img-responsive {
+      max-height: 280px;
+      margin: auto;
+    }
+
+  }
+  & .img-small-container {
+    margin: 4px 0;
+    overflow: hidden;
+    & .img-small {
+      cursor: pointer;
+      height: 40px;
+      width: 40px;
+      margin: 0 2px;
+      border: 1px solid #e1e1e1;
+      float: left;
+
+      img.img-responsive {
+        max-height: 40px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+    }
+  }
+  & .main-rating {
+    background-color: #ff0055;
+    border: 1px solid #cc0044;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: white;
+    float: left;
+  }
+  & .rate-yourself {
+    .rating-radio-label {
+      display: block;
+      position: static;
+      width: 20px;
+      height: 20px;
+      float: left;
+      margin: 0;
+      + input {
+        z-index: -100;
+      }
+    }
+
+    & .fa-star {
+      display: block;
+      position: static;
+      width: 20px;
+      height: 20px;
+      top: 0;
+      font-size: 20px;
+      margin: 0;
+      padding: 0 0 10px 0;
+      float: left;
+      z-index: 1;
+      -webkit-transition: .1s ease-out;
+      -o-transition: .1s ease-out;
+      transition: .1s ease-out;
+      color: #ccc;
+      &.hovered, &.selected {
+        color: #ffd800
+      }
+    }
+    & p {
+      margin-bottom: 2px;
+    }
+    margin: 20px 0 33px;
+  }
+  margin: 10px 0;
+}
+
+.right-block {
+  @media(min-width: 769px) {
+    float: right;
+  }
+}
+
+span.invisible {
+  display: none;
+}
+
+.menu-bar-logo {
+  line-height: 40px;
+  padding: 0 10px;
+}
+
+.logo-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar-default {
+  .navbar-toggle,
+  .navbar-toggle:active,
+  .navbar-toggle:focus,
+  .navbar-toggle:hover {
+    border: none;
+    background: none;
+  }
+}
+
+/* ===========================================================================
+   REMOVE UGLY GOOGLE MAPS LOGO + TEXTS
+   =========================================================================== */
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+a[title="Report problems with Street View imagery to Google"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+  display:none;
+}
+.gmnoprint div {
+  background:none !important;
+}
+
+/* =========================================================================== */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  & .contact {
+    text-align: center;
+    color: #fff;
+    padding: 20px 0;
+  }
+  & .copyright {
+    background-color: #cc0044;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 0;
+    color: #ffffff;
+  }
+  background-color: #ed1b58;
+  border-top: 1px solid #cc0044;
+  margin-top: 50px;
+}
+.place-container > .image-container .img-responsive {
+  max-height: 134px;
+  margin: 0 auto;
+}
+
+a.undecorated {
+  color: inherit;
+  text-decoration: none;
+}

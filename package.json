@@ -1,0 +1,32 @@
+{
+  "name": "devu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bedata",
+  "license": "ISC",
+  "dependencies": {
+    "cloudinary": "^1.4.4",
+    "colors": "^1.1.2",
+    "compression": "^1.6.2",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "express-busboy": "^4.0.0",
+    "express-session": "^1.13.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-less": "^3.1.0",
+    "gulp-watch": "^4.3.8",
+    "mongoose": "^4.5.2",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1"
+  },
+  "devDependencies": {
+    "gulp-minify": "0.0.15"
+  }
+}

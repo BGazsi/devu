@@ -1,0 +1,208 @@
+<%- include partials/portalHeader.ejs%>
+<%- include partials/menuBar.ejs%>
+<%- include partials/upload.ejs%>
+<%- include partials/criticalDetails.ejs%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 devu-container place-container place-favoritable top-offset" data-place-id="<%= tpl.place._id %>" itemscope itemtype="http://schema.org/Place">
+            <div class="details-header">
+                <div class="col-md-8">
+                    <div class="main-img">
+                        <img itemprop="image" class="img-responsive" src="<%= tpl.place.pictures[0] ? tpl.place.pictures[0] : '' %>" alt=""/>
+                    </div>
+                    <div class="img-small-container">
+                        <%  tpl.place.pictures.forEach(function(picture) { %>
+                            <div class="img-small"><img class="img-responsive" src="<%= picture %>" alt="" /></div>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 itemprop="name"><%= tpl.place.name %></h3>
+                    <p>Eddigi értékelések:</p>
+
+                    <div class="main-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                        <span itemprop="ratingValue"><%=tpl.place.ratings.aggregate.toFixed(1)%></span>
+                        <span itemprop="bestRating" class="hidden">5</span>
+                        <span itemprop="worstRating" class="hidden">1</span>
+                        <div itemprop="reviewCount" class="hidden"> <%=tpl.place.ratings.male.count + tpl.place.ratings.female.count%> </div>
+                    </div>
+                    <div class="ratings-vertical">
+                        <div class="male">
+                            <i class="fa fa-mars" aria-hidden="true"></i>
+                            <span><%= tpl.place.ratings.male.avg.toFixed(1) %></span>
+                        </div>
+                        <div class="female">
+                            <i class="fa fa-venus" aria-hidden="true"></i>
+                            <span><%= tpl.place.ratings.female.avg.toFixed(1) %></span>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="rate-yourself" data-rated-value="<%= tpl.currentUserRating %>">
+                        <p>Ismered? Értékeld Te is!</p>
+                        <div class="rating">
+                            <form action="/place/rate" id="rating-form">
+                                <label class="rating-radio-label" for="rating_value_1">
+                                    <i class="fa fa-star" data-component="rating-click-listener"></i>
+                                </label>
+                                <input type="radio" name="rating_value" class="item item-1" value="1">
+                                <label class="rating-radio-label" for="rating_value_2">
+                                    <i class="fa fa-star" data-component="rating-click-listener"></i>
+                                </label>
+                                <input type="radio" name="rating_value" class="item item-2" value="2">
+                                <label class="rating-radio-label" for="rating_value_3">
+                                    <i class="fa fa-star" data-component="rating-click-listener"></i>
+                                </label>
+                                <input type="radio" name="rating_value" class="item item-3" value="3">
+                                <label class="rating-radio-label" for="rating_value_4">
+                                    <i class="fa fa-star" data-component="rating-click-listener"></i>
+                                </label>
+                                <input type="radio" name="rating_value" class="item item-4" value="4">
+                                <label class="rating-radio-label" for="rating_value_5">
+                                    <i class="fa fa-star" data-component="rating-click-listener"></i>
+                                </label>
+                                <input type="radio" name="rating_value" class="item item-5" value="5">
+                            </form>
+                            <!--ha modosit, akkor uj ertek - regi erteket hozzaadunk az atlag*counthoz -->
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary btn-block" data-component="favorite">
+                        <i class="fa fa-heart" aria-hidden="true" data-component="changeText"></i>
+                        <span class="favorite-text add-text <%if(typeof tpl.user != 'undefined'){%><%= (tpl.user.favorites.indexOf(tpl.place._id) !== -1) ? 'invisible' : '' %><%}%>">Hozzáadom a kedvencekhez</span>
+                        <span class="favorite-text remove-text <%if(typeof tpl.user != 'undefined'){%><%= (tpl.user.favorites.indexOf(tpl.place._id) === -1) ? 'invisible' : '' %><%} else {%> invisible <%}%>">Eltávolítás a kedvencek közül</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="devu-title">
+                    <span>Leírás</span>
+                </div>
+                <p itemprop="description">
+                    <%= tpl.place.description %>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12">
+                <div class="devu-title">
+                    <span>Címkék</span>
+                </div>
+                <div class="devu-tags">
+                    <% tpl.tags.forEach(function(tag) { %>
+                        <span class="devu-tag"><%= tag.name %></span>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+                <meta itemprop="latitude" content="<%=tpl.place.position.lat%>" />
+                <meta itemprop="longitude" content="<%=tpl.place.position.long%>" />
+                <div class="devu-title">
+                    <span>Helyszín</span>
+                </div>
+                <div class="map" id="map"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-3 top-offset">
+            <%- include ./partials/similarPlaces.ejs%>
+            <%- include ./partials/top5.ejs%>
+        </div>
+    </div>
+</div>
+
+
+<!-- GOOGLE MAP SCRIPT -->
+<script>
+    var map;
+    function initialize() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: new google.maps.LatLng(<%= tpl.place.position.lat %>, <%= tpl.place.position.long %>),
+            disableDefaultUI: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: [
+                    {
+                "featureType": "all",
+                "elementType": "labels",
+                "stylers": [{
+                    "visibility": "simplified"
+                }]
+            }, {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#fcfcfc"
+                }]
+            }, {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#fcfcfc"
+                }]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#dddddd"
+                }]
+            }, {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#dddddd"
+                }]
+            }, {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#eeeeee"
+                }]
+            }, {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#dddddd"
+                }]
+            }]
+        });
+        var iconBase = '/public/images/';
+        var icons = {
+            devu: {
+                icon: iconBase + 'devu-marker.png'
+            }
+        };
+        function addMarker(feature) {
+            var marker = new google.maps.Marker({
+                position: feature.position,
+                icon: icons[feature.type].icon,
+                map: map
+            });
+        }
+        var features = [
+            {
+                position: new google.maps.LatLng(<%= tpl.place.position.lat %>, <%= tpl.place.position.long %>),
+                type: 'devu'
+            }
+        ];
+        for (var i = 0, feature; feature = features[i]; i++) {
+            addMarker(feature);
+        }
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs61acMMnbboeDeI6KNvpRQ4uuhoim6UQ&callback=initialize">
+</script>
+
+<%- include partials/portalFooter.ejs %>

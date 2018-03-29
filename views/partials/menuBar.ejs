@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="menu-bar-logo">
+                <a href="/home">
+                    <img src="/public/images/devu-logo.png" height="20">
+                </a>
+            </div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <% if (!user) { %>
+                    <a href="/user/login" class="btn btn-default navbar-btn" type="button">Bejelentkezés</a>
+                    <a href="/user/register" class="btn btn-default navbar-btn" type="button">Regisztráció</a>
+                <% } else { %>
+                    <form action="/user/logout" method="post">
+                        <a class="btn btn-default" href="/user/favorites" data-component="favorites-list"><i class="fa fa-heart-o"></i> Kedvencek</a>
+                        <button type="submit" class="btn btn-default navbar-btn" value="Logout" data-component="logout">Kijelentkezés</button>
+                    </form>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

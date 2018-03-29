@@ -1,0 +1,61 @@
+<form action="/admin/addPlace" method="post" encType="multipart/form-data">
+    <label for="name">Hely neve: </label>
+    <input type="text" name="name" />
+    <label for="description">Leírás: </label>
+    <input type="text" name="description" />
+    <label for="long">Long: </label>
+    <input type="text" name="long" />
+    <div></div>
+    <label for="lat">Lat: </label>
+    <input type="text" name="lat" />
+    <label for="pictureFile">Képek:</label>
+    <input type="file" name="pictureFile" accept="image/*" multiple>
+    <label for="verified">Elfogadott: </label>
+    <input type="checkbox" name="verified" style="opacity: 1; position: static"/>
+    <input type="submit" class="btn btn-default" value="Save">
+    <select multiple name="addedTags" class="form-control" id="tags">
+        <% tpl.tags.forEach(function(tag) { %>
+        <option value="<%= tag._id %>"><%= tag.name %></option>
+        <% }) %>
+    </select>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Név</th>
+            <th>Leírás</th>
+            <th>Long</th>
+            <th>Lat</th>
+            <th>Kép</th>
+            <th>Elfogadott</th>
+            <th width="10%" class="text-right">Szerkesztés</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% tpl.places.forEach(function(place) { %>
+        <tr>
+            <td><%= place.name %></td>
+            <td><%= place.description %></td>
+            <td><%= place.position.long %></td>
+            <td><%= place.position.lat %></td>
+            <td><img src="<%= place.pictures[0] ? place.pictures[0] : '' %>" alt="" style="max-width: 100px; max-height: 100px"></td>
+            <td><%= place.verified %></td>
+            <td class="text-right">
+                <button type="button" data-toggle="modal" data-target="#edit-place-modal-<%= place._id %>" data-place-id="<%= place._id %>" class="btn btn-default">
+                    <i class="fa fa-pencil" title="Szerkesztés"></i>
+                </button>
+                <button type="button" data-toggle="modal" data-target="#delete-place-modal-<%=place._id%>" data-place-id="<%= place._id %>" class="btn btn-danger">
+                    <i class="fa fa-trash-o" title="Törlés"></i>
+                </button>
+            </td>
+        </tr>
+
+        <%- include ./placeEditModal.ejs %>
+        <%- include ./placeDeleteModal.ejs %>
+
+        <% }); %>
+        </tbody>
+    </table>
+</div>

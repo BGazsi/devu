@@ -1,0 +1,39 @@
+<!-- Modal -->
+<div class="modal fade" id="edit-modal-<%= user._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Felhasználó szerkesztése</h4>
+            </div>
+            <form action="/admin/edit-user/<%=user._id%>" role="form" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label for="email">E-mail:</label>
+                            <input class="form-control" type="text" name="email" value="<%= user.email %>"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="sex">Nem:</label>
+                            <input class="form-control" type="text" name="sex" value="<%= user.sex %>"/>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-sm-6">
+                            <label for="disabled">Letiltott:</label>
+                            <input class="form-control" type="text" name="disabled" value="<%= user.disabled %>"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="verified">Megerősített:</label>
+                            <input class="form-control" type="text" name="verified" value="<%= user.verified %>"/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+                    <input type="submit" class="btn btn-primary" value="Mentés" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <!-- Custom Bootstrap -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.min.css">
+    <!-- Custom Bootstrap Theme -->
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/public/stylesheets/admin.css">
+    <link rel="stylesheet" href="/public/fonts/css/font-awesome.min.css">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/public/images/favicons.ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/public/images/favicons.ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/public/images/favicons.ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/public/images/favicons.ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/public/images/favicons.ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/public/images/favicons.ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/public/images/favicons.ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/public/images/favicons.ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/images/favicons.ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/public/images/favicons.ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favicons.ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/public/images/favicons.ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favicons.ico/favicon-16x16.png">
+    <link rel="manifest" href="/public/images/favicons.ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/public/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+<main>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Felhasználók</a></li>
+        <li role="presentation"><a href="#places" aria-controls="places" role="tab" data-toggle="tab">Helyek</a></li>
+        <li role="presentation"><a href="#tag-tab" aria-controls="tags" role="tab" data-toggle="tab">Tagek</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">Hello <%= user ? user.email : 'admin' %>!</div>
+        <div role="tabpanel" class="tab-pane" id="users"><%- include partials/users.ejs %></div>
+        <div role="tabpanel" class="tab-pane" id="places"><%- include partials/places.ejs %></div>
+        <div role="tabpanel" class="tab-pane" id="tag-tab"><%- include partials/tags.ejs %></div>
+    </div>
+</main>
+<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="../public/js/script.min.js"></script>
+</body>
+
+</html>

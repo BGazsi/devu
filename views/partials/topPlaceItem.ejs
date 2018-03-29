@@ -1,0 +1,19 @@
+<div class="top-place-item place-favoritable" data-place-id="<%= place._id %>" itemscope itemtype="http://schema.org/Place">
+    <div class="item-image"><img itemprop="image" src="<%= place.pictures[0] ? place.pictures[0] : '' %>" alt="" class="img-responsive"></div>
+    <div class="item-info">
+        <h4 itemprop="name"><%= place.name %></h4>
+        <div class="item-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <span itemprop="ratingValue"><%= place.ratings.aggregate.toFixed(1) %></span>
+            <span itemprop="bestRating" class="hidden">5</span>
+            <span itemprop="worstRating" class="hidden">1</span>
+            <div itemprop="reviewCount" class="hidden"> <%=place.ratings.male.count + place.ratings.female.count%> </div>
+        </div>
+    </div>
+    <div class="icon-fav" data-component="favorite" <% if(!user){ %>
+         tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-html="true" data-content="A kedvencek funkció csak bejelentkezett felhasználók számára elérhető! <a href='/user/login'>Jelentkezz be</a> vagy <a href='/user/register'>regisztrálj!</a>"
+            <%}%>
+         data-is-favorite="<%= user ? user.favorites.indexOf(place._id) : '-1' %>">
+        <i class="fa fa-heart" aria-hidden="true" data-component="changeIcon"></i>
+    </div>
+    <div class="clearfix"></div>
+</div>

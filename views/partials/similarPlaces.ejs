@@ -1,0 +1,10 @@
+<p><strong>Hasonló helyek</strong></p>
+<div class="top-5-container">
+<% tpl.similar.forEach(function(place, index) {
+    if(place.verified) {%>
+
+    <%- include ./topPlaceItem.ejs %>
+
+    <% } %>
+<% }); %>
+</div>
